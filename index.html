@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEEVA Juice</title>
+
+<style>
+body { margin:0; font-family:'Segoe UI',sans-serif; }
+.hero { display:flex; height:100vh; }
+
+/* LEFT PANEL */
+.left {
+  width:50%;
+  background:#1f1f1f;
+  color:white;
+  padding:25px;
+}
+
+.topbar { display:flex; align-items:center; }
+
+.brand-row { display:flex; align-items:center; gap:10px; }
+
+.logo { width:55px; border-radius:50%; }
+
+.brand { font-size:32px; font-weight:bold; }
+
+.tabs { display:flex; gap:10px; margin-left:20px; }
+
+.tab {
+  padding:8px 16px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.1);
+  cursor:pointer;
+}
+
+.tab.active { background:#6bbf59; }
+
+.content-box {
+  margin-top:20px;
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:12px;
+  min-height:300px;
+}
+
+.cta {
+  margin-top:10px;
+  padding:10px 18px;
+  border:none;
+  border-radius:20px;
+  background:#6bbf59;
+  color:white;
+  cursor:pointer;
+  display:none;
+}
+
+/* RIGHT PANEL */
+.right {
+  width:50%;
+  background:linear-gradient(135deg,#ff7f50,#ff9966);
+  display:flex;
+  gap:20px;
+  padding:20px;
+  position:relative;
+}
+
+/* PRODUCT SECTION */
+.product-section {
+  width:65%;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  justify-content:space-between;
+}
+
+.image-box {
+  height:48%;
+  margin-bottom:15px;
+}
+
+.product {
+  width:100%;
+  height:100%;
+  max-height:300px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+/* DESCRIPTION */
+.desc-box {
+  height:48%;
+  background:rgba(255,255,255,0.25);
+  padding:15px;
+  border-radius:12px;
+  color:white;
+  overflow-y:auto;
+}
+
+/* RIGHT MENU */
+.juice-menu {
+  position:absolute;
+  right:20px;
+  top:20px;
+  bottom:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  overflow-y:auto;
+}
+
+.juice-btn {
+  width:170px;
+  padding:8px;
+  font-size:13px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.25);
+  text-align:center;
+  cursor:pointer;
+}
+
+.juice-btn.active {
+  background:white;
+  color:#ff7f50;
+  font-weight:bold;
+}
+
+@media(max-width:768px){
+  .hero { flex-direction:column; }
+  .left,.right { width:100%; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+<!-- LEFT -->
+<div class="left">
+
+<div class="topbar">
+<div class="brand-row">
+<img src="logo.png" class="logo" onerror="this.src='https://via.placeholder.com/50?text=J'">
+<div class="brand">JEEVA</div>
+
+<div class="tabs">
+<div class="tab active" onclick="showTab(event,'about')">About</div>
+<div class="tab" onclick="showTab(event,'vision')">Vision</div>
+<div class="tab" onclick="showTab(event,'pricing')">Pricing</div>
+<div class="tab" onclick="showTab(event,'contact')">Contact</div>
+</div>
+</div>
+</div>
+
+<div class="content-box">
+<div id="contentBox"></div>
+<button class="cta" id="orderBtn" onclick="orderNow()">Order Now</button>
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="right">
+
+<div class="product-section">
+
+<div class="image-box">
+<img id="juiceImg" class="product">
+</div>
+
+<div class="desc-box">
+<p id="juiceText"></p>
+<ul id="juiceDesc"></ul>
+</div>
+
+</div>
+
+<div class="juice-menu" id="juiceMenu"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let currentJuice="abc";
+
+/* CONTENT */
+const content = {
+
+about: `
+<h3>About Jeeva</h3>
+<p><b>JEEVA – The Fresh Juice : Jio Good Life!!!</b></p>
+<p>Founded in March 2026 by <b>Shubham Sharma</b> and <b>Pravesh Sharma</b>, Jeeva specializes in pure cold-pressed juices made from fresh fruits and vegetables.</p>
+<p><b>Purpose</b></p>
+<p>Healthy, nutrient-rich morning drinks to support an energetic and balanced lifestyle.</p>
+`,
+
+vision: `
+<h3>Vision</h3>
+<p>To become the go-to brand for natural, fresh hydration and inspire daily wellness.</p>
+<p><b>Mission</b></p>
+<p>
+• Source best seasonal produce<br>
+• Craft cold-pressed juices<br>
+• Deliver fresh drinks daily<br>
+• Make health accessible
+</p>
+`,
+
+pricing: `
+<h3>Our Products</h3>
+
+<table style="width:100%; border-collapse:collapse;">
+<tr><th align="left">Product</th><th align="right">Price</th></tr>
+
+<tr onclick="changeJuice('abc')"><td>ABC POWER 🍎🥕</td><td align="right">₹40</td></tr>
+<tr onclick="changeJuice('detox')"><td>GREEN DETOX</td><td align="right">₹30</td></tr>
+<tr onclick="changeJuice('mint')"><td>BITTER & MINT</td><td align="right">₹30</td></tr>
+<tr onclick="changeJuice('beet')"><td>BEET & MELON</td><td align="right">₹30</td></tr>
+<tr onclick="changeJuice('golden')"><td>GOLDEN ELIXIR</td><td align="right">₹30</td></tr>
+<tr onclick="changeJuice('pom')"><td>POM APPLE</td><td align="right">₹60</td></tr>
+<tr onclick="changeJuice('gourd')"><td>COOL GOURD</td><td align="right">₹30</td></tr>
+<tr onclick="changeJuice('berry')"><td>BERRY BLEND</td><td align="right">₹60</td></tr>
+<tr onclick="changeJuice('citrus')"><td>CITRUS BEET</td><td align="right">₹40</td></tr>
+<tr onclick="changeJuice('carrot')"><td>CARROT BOOST</td><td align="right">₹30</td></tr>
+<tr onclick="changeJuice('sattu')"><td>SATTU SHARBAT</td><td align="right">₹30</td></tr>
+</table>
+
+<br><b>Benefits:</b><br>
+Weight management • Energy • Immunity • BP Control
+
+<br><br><b>Delivery:</b> Morning 6AM - 10AM
+`,
+
+contact: `
+<h3>Contact</h3>
+<p>Please provide your feedback</p>
+<p>📞 8657818129</p>
+<p>📧 jeevathefreshjuice4you@gmail.com</p>
+`
+};
+
+/* PRODUCTS */
+const juices = {
+abc:{name:"ABC POWER 🍎🥕", img:"https://images.unsplash.com/photo-1572441710534-680e0b3c7c09", text:"Boosts energy and improves blood health.", points:["Iron","Detox","Energy"]},
+detox:{name:"GREEN DETOX", img:"https://images.unsplash.com/photo-1505576399279-565b52d4ac71", text:"Cleanses body.", points:["Detox","Digestion","Immunity"]},
+mint:{name:"BITTER & MINT", img:"https://images.unsplash.com/photo-1497534446932-c925b458314e", text:"Cooling drink.", points:["Cooling","Gut"]},
+beet:{name:"BEET & MELON", img:"https://images.unsplash.com/photo-1576402187878-974f70c890a5", text:"Hydration drink.", points:["Energy"]},
+golden:{name:"GOLDEN ELIXIR", img:"https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2", text:"Boosts immunity.", points:["Vitamin C"]},
+pom:{name:"POM APPLE", img:"https://images.unsplash.com/photo-1610832958506-aa56368176cf", text:"Heart health.", points:["Antioxidants"]},
+gourd:{name:"COOL GOURD", img:"https://images.unsplash.com/photo-1625944231581-9c7cbe2c1e7c", text:"Cooling body.", points:["Hydration"]},
+berry:{name:"BERRY BLEND", img:"https://images.unsplash.com/photo-1502741338009-cac2772e18bc", text:"Antioxidant rich.", points:["Immunity"]},
+citrus:{name:"CITRUS BEET", img:"https://images.unsplash.com/photo-1615486363973-f79a7c3d4e9d", text:"Boost stamina.", points:["Vitamin C"]},
+carrot:{name:"CARROT BOOST", img:"https://images.unsplash.com/photo-1582515073490-39981397c445", text:"Improves vision.", points:["Vitamin A"]},
+sattu:{name:"SATTU SHARBAT", img:"https://images.unsplash.com/photo-1625944525903-2f2b1766fa0c", text:"Protein drink.", points:["Energy"]}
+};
+
+/* FUNCTIONS */
+function showTab(e,tab){
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+e.target.classList.add("active");
+
+document.getElementById("contentBox").innerHTML=content[tab];
+document.getElementById("orderBtn").style.display = (tab==="pricing") ? "inline-block" : "none";
+}
+
+function renderMenu(){
+let html="";
+for(let k in juices){
+html+=`<div class="juice-btn" onclick="changeJuice('${k}',event)">${juices[k].name}</div>`;
+}
+document.getElementById("juiceMenu").innerHTML=html;
+}
+
+function changeJuice(k,e){
+currentJuice=k;
+let j=juices[k];
+
+document.getElementById("juiceImg").src=j.img;
+document.getElementById("juiceText").innerText=j.text;
+
+let p="";
+j.points.forEach(x=>p+=`<li>${x}</li>`);
+document.getElementById("juiceDesc").innerHTML=p;
+
+document.querySelectorAll(".juice-btn").forEach(btn=>btn.classList.remove("active"));
+document.querySelectorAll(".juice-btn").forEach(btn=>{
+if(btn.innerText === j.name){ btn.classList.add("active"); }
+});
+
+if(e) e.target.classList.add("active");
+
+window.history.pushState({}, "", "?juice="+k);
+}
+
+function orderNow(){
+let msg=`Hello, I want to order ${juices[currentJuice].name}`;
+window.open(`https://wa.me/918657818129?text=${encodeURIComponent(msg)}`);
+}
+
+function loadFromURL(){
+let params=new URLSearchParams(window.location.search);
+let j=params.get("juice");
+if(j && juices[j]) changeJuice(j);
+else changeJuice("abc");
+}
+
+/* INIT */
+renderMenu();
+showTab({target:document.querySelector(".tab")},"about");
+loadFromURL();
+
+</script>
+
+</body>
+</html>
