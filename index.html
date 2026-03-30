@@ -129,6 +129,192 @@ body { margin:0; font-family:'Segoe UI',sans-serif; }
   .hero { flex-direction:column; }
   .left,.right { width:100%; }
 }
+
+/* ================= FINAL MOBILE FIX (CLEAN + STABLE) ================= */
+@media (max-width:768px){
+
+  /* GLOBAL */
+  html, body{
+    width:100%;
+    overflow-x:hidden !important;
+    background:#ff7f50;
+  }
+
+  body{
+    overflow:auto;
+    font-size:15px;
+  }
+
+  .hero{
+    flex-direction:column;
+    height:auto !important;
+    width:100%;
+    overflow:hidden;
+  }
+
+  .left, .right{
+    width:100%;
+  }
+
+  /* HEADER */
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .logo{
+    width:40px;
+  }
+
+  .brand{
+    font-size:22px;
+  }
+
+  .tabs{
+    margin-left:0;
+    overflow-x:auto;
+    white-space:nowrap;
+    gap:8px;
+  }
+
+  .tab{
+    font-size:12px;
+    padding:6px 10px;
+    flex:0 0 auto;
+  }
+
+  /* LEFT PANEL */
+  .left{
+    padding:15px !important;
+    text-align:left !important;
+  }
+
+  .content-box{
+    padding:15px !important;
+    min-height:auto !important;
+    text-align:left !important;
+  }
+
+  .content-box h3{
+    font-size:16px;
+  }
+
+  .content-box p{
+    font-size:13px;
+  }
+
+  /* PRICING TABLE */
+  table{
+    width:100% !important;
+    font-size:12px !important;
+  }
+
+  table th, table td{
+    padding:6px 4px;
+  }
+
+  table td{
+    word-break:break-word;
+  }
+
+  table td:last-child{
+    text-align:right;
+  }
+
+  /* ORDER BUTTON */
+  .cta{
+    width:auto !important;
+    padding:6px 14px !important;
+    font-size:12px !important;
+    margin-top:10px;
+  }
+
+  /* RIGHT PANEL */
+  .right{
+    flex-direction:column;
+    position:relative;
+    padding:15px;
+    box-sizing:border-box;
+    overflow:hidden;
+    height:auto !important;
+    min-height:auto !important;
+    padding-bottom:5px !important;
+    margin-bottom:0 !important;
+  }
+
+  .product-section{
+    display:flex;
+    flex-direction:column;
+    gap:8px !important;
+    width:100%;
+  }
+
+  /* IMAGE (NO HEIGHT RESTRICTION) */
+  .image-box{
+    width:100%;
+    margin-bottom:5px !important;
+  }
+
+  .product{
+    width:100%;
+    height:auto;
+    border-radius:12px;
+  }
+
+  /* DESCRIPTION (NO HEIGHT RESTRICTION) */
+  .desc-box{
+    height:auto;
+    font-size:14px;            /* 🔥 slightly bigger */
+    padding:14px;
+    margin-bottom:0 !important;
+    padding-bottom:8px !important;
+    line-height:1.5;
+  }
+
+  /* PRODUCT LIST (SWIPE) */
+  .juice-menu{
+    display:flex;
+    flex-direction:row;
+    overflow-x:auto;
+    overflow-y:hidden;
+    gap:8px;
+    padding:8px 6px !important;
+    margin-top:0 !important;   /* 🔥 GAP REMOVED */
+    align-items:center;
+    box-sizing:border-box;
+    width:100%;
+    position:relative;
+    z-index:2;
+    min-height:50px;
+  }
+
+  .juice-menu::-webkit-scrollbar{
+    display:none;
+  }
+
+  .juice-btn{
+    flex:0 0 auto;
+    min-width:95px;
+    max-width:130px;
+    font-size:12px;
+    padding:8px 10px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1.3;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+ .product-section > *{
+    margin-bottom:0 !important;
+}
+
+}
+
 </style>
 </head>
 
@@ -244,17 +430,238 @@ contact: `
 
 /* PRODUCTS */
 const juices = {
-abc:{name:"ABC POWER 🍎🥕", img:"https://images.unsplash.com/photo-1572441710534-680e0b3c7c09", text:"Boosts energy and improves blood health.", points:["Iron","Detox","Energy"]},
-detox:{name:"GREEN DETOX", img:"https://images.unsplash.com/photo-1505576399279-565b52d4ac71", text:"Cleanses body.", points:["Detox","Digestion","Immunity"]},
-mint:{name:"BITTER & MINT", img:"https://images.unsplash.com/photo-1497534446932-c925b458314e", text:"Cooling drink.", points:["Cooling","Gut"]},
-beet:{name:"BEET & MELON", img:"https://images.unsplash.com/photo-1576402187878-974f70c890a5", text:"Hydration drink.", points:["Energy"]},
-golden:{name:"GOLDEN ELIXIR", img:"https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2", text:"Boosts immunity.", points:["Vitamin C"]},
-pom:{name:"POM APPLE", img:"https://images.unsplash.com/photo-1610832958506-aa56368176cf", text:"Heart health.", points:["Antioxidants"]},
-gourd:{name:"COOL GOURD", img:"https://images.unsplash.com/photo-1625944231581-9c7cbe2c1e7c", text:"Cooling body.", points:["Hydration"]},
-berry:{name:"BERRY BLEND", img:"https://images.unsplash.com/photo-1502741338009-cac2772e18bc", text:"Antioxidant rich.", points:["Immunity"]},
-citrus:{name:"CITRUS BEET", img:"https://images.unsplash.com/photo-1615486363973-f79a7c3d4e9d", text:"Boost stamina.", points:["Vitamin C"]},
-carrot:{name:"CARROT BOOST", img:"https://images.unsplash.com/photo-1582515073490-39981397c445", text:"Improves vision.", points:["Vitamin A"]},
-sattu:{name:"SATTU SHARBAT", img:"https://images.unsplash.com/photo-1625944525903-2f2b1766fa0c", text:"Protein drink.", points:["Energy"]}
+
+abc:{
+name:"ABC POWER 🍎🥕",
+img:"images/abc-power.png",
+text:`ABC juice (Apple + Beetroot + Carrot) is one of the most powerful natural health drinks.
+
+It is rich in vitamins A & C, antioxidants, and natural nitrates that improve blood flow and energy levels. Regular consumption supports immunity, glowing skin, and digestion.
+
+This juice is especially beneficial in the morning on an empty stomach for maximum absorption.
+
+Precautions:
+• Avoid excess if you have kidney stones (high oxalates)
+• Monitor sugar if diabetic
+• Start with small quantity`,
+points:[
+"Boosts immunity & energy",
+"Improves skin glow",
+"Supports digestion",
+"Helps blood circulation",
+"Natural detox drink"
+]},
+
+detox:{
+name:"GREEN DETOX",
+img:"images/green-detox.png",
+text:`Green Detox juice is made from leafy greens like spinach, cucumber, and apple.
+
+It delivers a concentrated dose of vitamins, minerals, and antioxidants that help cleanse the body and improve hydration.
+
+This juice supports gut health and helps reduce bloating when consumed regularly.
+
+Precautions:
+• Avoid overconsumption
+• Not a replacement for meals
+• Consult doctor for kidney issues`,
+points:[
+"Rich in antioxidants",
+"Improves digestion",
+"Hydrates body",
+"Supports detox",
+"Boosts immunity"
+]},
+
+mint:{
+name:"BITTER MINT BOOST",
+img:"images/bitter-mint.png",
+text:`A strong detox juice made from bitter gourd (karela), mint, and amla.
+
+It is widely known for its ability to regulate blood sugar levels and improve digestion.
+
+Mint helps balance the bitterness and adds a refreshing effect, making it easier to consume.
+
+Precautions:
+• Can lower blood sugar significantly
+• Avoid during pregnancy
+• Start with small quantity`,
+points:[
+"Supports diabetes control",
+"Improves digestion",
+"Liver detox support",
+"Boosts immunity",
+"Cooling effect"
+]},
+
+beet:{
+name:"BEET & MELON",
+img:"images/beet-melon.png",
+text:`A refreshing combination of beetroot and watermelon.
+
+This juice improves blood flow and stamina due to natural nitrates and citrulline.
+
+It is highly hydrating and perfect for summer, helping reduce fatigue and improve circulation.
+
+Precautions:
+• May lower blood pressure
+• High oxalates (limit if kidney issues)
+• Monitor sugar intake`,
+points:[
+"Boosts stamina",
+"Improves blood flow",
+"Hydrating drink",
+"Rich in antioxidants",
+"Supports heart health"
+]},
+
+golden:{
+name:"GOLDEN ELIXIR",
+img:"images/golden-elixir.png",
+text:`Golden Elixir is a powerful immunity drink made with amla, turmeric, and ginger.
+
+It is rich in vitamin C and anti-inflammatory compounds that strengthen immunity and improve digestion.
+
+This juice is ideal for daily wellness and disease prevention.
+
+Precautions:
+• Can cause acidity if taken in excess
+• Monitor if diabetic
+• Avoid large quantity during pregnancy`,
+points:[
+"Boosts immunity",
+"Anti-inflammatory",
+"Improves digestion",
+"Supports skin & hair",
+"Natural detox"
+]},
+
+pom:{
+name:"POM APPLE",
+img:"images/pom-apple.png",
+text:`Pom Apple juice combines pomegranate and apple for a sweet and refreshing drink.
+
+It is rich in antioxidants and supports heart health, skin health, and immunity.
+
+This juice is ideal for daily refreshment and maintaining energy levels.
+
+Precautions:
+• High natural sugar
+• Avoid excess consumption
+• May interact with some medications`,
+points:[
+"Heart health support",
+"Rich in antioxidants",
+"Boosts immunity",
+"Improves skin",
+"Refreshing energy drink"
+]},
+
+gourd:{
+name:"COOL GOURD",
+img:"images/cool-gourd.png",
+text:`Cool Gourd juice is made from bottle gourd (lauki), known for its cooling properties.
+
+It helps hydrate the body, improve digestion, and support weight management.
+
+Perfect for summer, this juice helps regulate body temperature and improve overall wellness.
+
+Precautions:
+• Never use bitter gourd (toxic)
+• Avoid overconsumption
+• Consume fresh only`,
+points:[
+"Cooling effect",
+"Hydrates body",
+"Supports digestion",
+"Low calorie",
+"Heart friendly"
+]},
+
+berry:{
+name:"BERRY BLEND",
+img:"images/berry-blend.png",
+text:`Berry Blend juice combines multiple berries rich in antioxidants and vitamins.
+
+It helps reduce inflammation, improve heart health, and support brain function.
+
+This juice is delicious and highly nutritious, making it perfect for daily consumption.
+
+Precautions:
+• Contains natural sugars
+• Avoid excess intake
+• Watch for berry allergies`,
+points:[
+"High antioxidants",
+"Boosts immunity",
+"Supports heart health",
+"Improves brain function",
+"Great taste"
+]},
+
+citrus:{
+name:"CITRUS BEET",
+img:"images/citrus-beet.png",
+text:`Citrus Beet juice combines beetroot with citrus fruits like orange and lemon.
+
+It enhances iron absorption and improves blood circulation.
+
+This juice is ideal for boosting stamina and energy levels.
+
+Precautions:
+• May lower blood pressure
+• High oxalates
+• Monitor sugar levels`,
+points:[
+"Improves blood flow",
+"Boosts stamina",
+"Rich in vitamin C",
+"Supports immunity",
+"Enhances iron absorption"
+]},
+
+carrot:{
+name:"CARROT BOOST",
+img:"images/carrot-boost.png",
+text:`Carrot Boost juice is rich in vitamin A and natural antioxidants.
+
+It supports eye health, improves skin, and provides steady energy.
+
+This juice is ideal for daily nutrition and vitality.
+
+Precautions:
+• Excess may cause skin yellowing (harmless)
+• Monitor sugar if diabetic
+• Avoid overconsumption`,
+points:[
+"Improves eyesight",
+"Boosts energy",
+"Rich in vitamin A",
+"Supports skin",
+"Good digestion"
+]},
+
+sattu:{
+name:"SATTU SHAKE",
+img:"images/sattu-shake.png",
+text:`Sattu Shake is a traditional Indian protein-rich drink made from roasted chana.
+
+It is highly nutritious and helps in cooling the body, boosting energy, and improving digestion.
+
+Perfect for summer, it provides long-lasting energy and hydration.
+
+Precautions:
+• High fiber may cause bloating
+• Avoid if allergic to chickpeas
+• Consume in moderation`,
+points:[
+"High protein drink",
+"Cooling effect",
+"Improves digestion",
+"Boosts energy",
+"Supports weight management"
+]}
+
 };
 
 /* FUNCTIONS */
@@ -293,6 +700,7 @@ if(btn.innerText === j.name){ btn.classList.add("active"); }
 if(e) e.target.classList.add("active");
 
 window.history.pushState({}, "", "?juice="+k);
+document.querySelector('.juice-menu').scrollLeft = e ? e.target.offsetLeft - 50 : 0;
 }
 
 function orderNow(){
@@ -305,6 +713,16 @@ let params=new URLSearchParams(window.location.search);
 let j=params.get("juice");
 if(j && juices[j]) changeJuice(j);
 else changeJuice("abc");
+}
+
+function scrollProducts(direction){
+  const container = document.querySelector(".juice-menu");
+  const scrollAmount = 150;
+
+  container.scrollBy({
+    left: direction * scrollAmount,
+    behavior: "smooth"
+  });
 }
 
 /* INIT */
