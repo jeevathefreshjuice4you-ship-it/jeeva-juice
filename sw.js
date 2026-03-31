@@ -1,45 +1,20 @@
 const CACHE_NAME = "jeeva-v5";
 
-const urlsToCache = [
-  "./",
-  "./index.html"
-];
-
-/* INSTALL */
 self.addEventListener("install", event => {
-  self.skipWaiting(); // 🔥 force update
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
+  self.skipWaiting();
 });
 
-/* ACTIVATE */
 self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key); // 🔥 clear old cache
-          }
-        })
-      )
-    )
-  );
-  self.clients.claim(); // 🔥 take control immediately
+  event.waitUntil(clients.claim());
 });
 
-/* FETCH - NETWORK FIRST (IMPORTANT FIX) */
 self.addEventListener("fetch", event => {
+  // 🔥 DO NOT INTERCEPT IMAGES
+  if (event.request.destination === "image") {
+    return;
+  }
+
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        return caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, response.clone()); // update cache
-          return response;
-        });
-      })
-      .catch(() => caches.match(event.request)) // fallback to cache
+    fetch(event.request).catch(() => caches.match(event.request))
   );
 });
