@@ -1,4 +1,4 @@
-const CACHE_NAME = "jeeva-v3";
+const CACHE_NAME = "jeeva-v1";
 
 const urlsToCache = [
   "./",
