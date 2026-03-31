@@ -91,10 +91,20 @@ body { margin:0; font-family:'Segoe UI',sans-serif; }
 .desc-box {
   height:48%;
   background:rgba(255,255,255,0.25);
-  padding:15px;
+  padding:12px 12px 8px 12px;
   border-radius:12px;
   color:white;
   overflow-y:auto;
+  scrollbar-width:none;
+}
+
+.desc-box::-webkit-scrollbar{
+  display:none; /* Chrome */
+}
+
+.desc-box p{
+  margin:0;   /* removes top gap */
+  line-height:1.5;
 }
 
 /* RIGHT MENU */
@@ -246,7 +256,7 @@ body { margin:0; font-family:'Segoe UI',sans-serif; }
   .product-section{
     display:flex;
     flex-direction:column;
-    gap:8px !important;
+    gap:0px !important;
     width:100%;
   }
 
@@ -279,8 +289,8 @@ body { margin:0; font-family:'Segoe UI',sans-serif; }
     overflow-x:auto;
     overflow-y:hidden;
     gap:8px;
-    padding:8px 6px !important;
-    margin-top:0 !important;   /* 🔥 GAP REMOVED */
+    padding-top:5px !important;
+    margin-top:5px !important;   /* 🔥 GAP REMOVED */
     align-items:center;
     box-sizing:border-box;
     width:100%;
@@ -399,19 +409,77 @@ pricing: `
 <h3>Our Products</h3>
 
 <table style="width:100%; border-collapse:collapse;">
-<tr><th align="left">Product</th><th align="right">Price</th></tr>
+<tr>
+  <th align="left">Product</th>
+  <th align="center">Size</th>
+  <th align="right">Price</th>
+</tr>
 
-<tr onclick="changeJuice('abc')"><td>ABC POWER 🍎🥕</td><td align="right">₹40</td></tr>
-<tr onclick="changeJuice('detox')"><td>GREEN DETOX</td><td align="right">₹30</td></tr>
-<tr onclick="changeJuice('mint')"><td>BITTER & MINT</td><td align="right">₹30</td></tr>
-<tr onclick="changeJuice('beet')"><td>BEET & MELON</td><td align="right">₹30</td></tr>
-<tr onclick="changeJuice('golden')"><td>GOLDEN ELIXIR</td><td align="right">₹30</td></tr>
-<tr onclick="changeJuice('pom')"><td>POM APPLE</td><td align="right">₹60</td></tr>
-<tr onclick="changeJuice('gourd')"><td>COOL GOURD</td><td align="right">₹30</td></tr>
-<tr onclick="changeJuice('berry')"><td>BERRY BLEND</td><td align="right">₹60</td></tr>
-<tr onclick="changeJuice('citrus')"><td>CITRUS BEET</td><td align="right">₹40</td></tr>
-<tr onclick="changeJuice('carrot')"><td>CARROT BOOST</td><td align="right">₹30</td></tr>
-<tr onclick="changeJuice('sattu')"><td>SATTU SHARBAT</td><td align="right">₹30</td></tr>
+<tr onclick="changeJuice('abc')">
+  <td>ABC POWER 🍎🥕</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹40</td>
+</tr>
+
+<tr onclick="changeJuice('detox')">
+  <td>GREEN DETOX</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹30</td>
+</tr>
+
+<tr onclick="changeJuice('mint')">
+  <td>BITTER & MINT</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹30</td>
+</tr>
+
+<tr onclick="changeJuice('beet')">
+  <td>BEET & MELON</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹30</td>
+</tr>
+
+<tr onclick="changeJuice('golden')">
+  <td>GOLDEN ELIXIR</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹30</td>
+</tr>
+
+<tr onclick="changeJuice('pom')">
+  <td>POM APPLE</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹60</td>
+</tr>
+
+<tr onclick="changeJuice('gourd')">
+  <td>COOL GOURD</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹30</td>
+</tr>
+
+<tr onclick="changeJuice('berry')">
+  <td>BERRY BLEND</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹60</td>
+</tr>
+
+<tr onclick="changeJuice('citrus')">
+  <td>CITRUS BEET</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹40</td>
+</tr>
+
+<tr onclick="changeJuice('carrot')">
+  <td>CARROT BOOST</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹30</td>
+</tr>
+
+<tr onclick="changeJuice('sattu')">
+  <td>SATTU SHARBAT</td>
+  <td align="center">200 ML</td>
+  <td align="right">₹30</td>
+</tr>
 </table>
 
 <br><b>Benefits:</b><br>
@@ -432,236 +500,224 @@ contact: `
 const juices = {
 
 abc:{
-name:"ABC POWER 🍎🥕",
+name:"ABC POWER",
 img:"images/abc-power.png",
-text:`ABC juice (Apple + Beetroot + Carrot) is one of the most powerful natural health drinks.
+text:`
+About Juice:
+ABC juice (Apple + Beetroot + Carrot) is one of the most powerful natural health drinks. It is rich in vitamins A & C, antioxidants, and natural nitrates that improve blood flow and energy levels. It is best consumed in the morning on an empty stomach.
 
-It is rich in vitamins A & C, antioxidants, and natural nitrates that improve blood flow and energy levels. Regular consumption supports immunity, glowing skin, and digestion.
+Benefits:
+• Boosts immunity & energy
+• Improves skin glow
+• Supports digestion
+• Helps blood circulation
+• Natural detox drink
 
-This juice is especially beneficial in the morning on an empty stomach for maximum absorption.
-
-Precautions:
-• Avoid excess if you have kidney stones (high oxalates)
+Precautions & Side Effects:
+• Avoid excess if you have kidney stones
 • Monitor sugar if diabetic
-• Start with small quantity`,
-points:[
-"Boosts immunity & energy",
-"Improves skin glow",
-"Supports digestion",
-"Helps blood circulation",
-"Natural detox drink"
-]},
+• Start with small quantity
+`},
 
 detox:{
 name:"GREEN DETOX",
 img:"images/green-detox.png",
-text:`Green Detox juice is made from leafy greens like spinach, cucumber, and apple.
+text:`
+About Juice:
+Green Detox juice is made from leafy greens like spinach, cucumber, and apple. It delivers a rich dose of nutrients and antioxidants that help cleanse the body and improve hydration.
 
-It delivers a concentrated dose of vitamins, minerals, and antioxidants that help cleanse the body and improve hydration.
+Benefits:
+• Rich in antioxidants
+• Improves digestion
+• Hydrates body
+• Supports detox
+• Boosts immunity
 
-This juice supports gut health and helps reduce bloating when consumed regularly.
-
-Precautions:
+Precautions & Side Effects:
 • Avoid overconsumption
 • Not a replacement for meals
-• Consult doctor for kidney issues`,
-points:[
-"Rich in antioxidants",
-"Improves digestion",
-"Hydrates body",
-"Supports detox",
-"Boosts immunity"
-]},
+• Consult doctor for kidney issues
+`},
 
 mint:{
 name:"BITTER MINT BOOST",
 img:"images/bitter-mint.png",
-text:`A strong detox juice made from bitter gourd (karela), mint, and amla.
+text:`
+About Juice:
+A strong detox juice made from bitter gourd, mint, and amla. It helps regulate blood sugar and improves digestion while mint balances the bitterness.
 
-It is widely known for its ability to regulate blood sugar levels and improve digestion.
+Benefits:
+• Supports diabetes control
+• Improves digestion
+• Liver detox support
+• Boosts immunity
+• Cooling effect
 
-Mint helps balance the bitterness and adds a refreshing effect, making it easier to consume.
-
-Precautions:
+Precautions & Side Effects:
 • Can lower blood sugar significantly
 • Avoid during pregnancy
-• Start with small quantity`,
-points:[
-"Supports diabetes control",
-"Improves digestion",
-"Liver detox support",
-"Boosts immunity",
-"Cooling effect"
-]},
+• Start with small quantity
+`},
 
 beet:{
 name:"BEET & MELON",
 img:"images/beet-melon.png",
-text:`A refreshing combination of beetroot and watermelon.
+text:`
+About Juice:
+A refreshing combination of beetroot and watermelon that improves blood flow and stamina. It is highly hydrating and ideal for summer.
 
-This juice improves blood flow and stamina due to natural nitrates and citrulline.
+Benefits:
+• Boosts stamina
+• Improves blood flow
+• Hydrating drink
+• Rich in antioxidants
+• Supports heart health
 
-It is highly hydrating and perfect for summer, helping reduce fatigue and improve circulation.
-
-Precautions:
+Precautions & Side Effects:
 • May lower blood pressure
 • High oxalates (limit if kidney issues)
-• Monitor sugar intake`,
-points:[
-"Boosts stamina",
-"Improves blood flow",
-"Hydrating drink",
-"Rich in antioxidants",
-"Supports heart health"
-]},
+• Monitor sugar intake
+`},
 
 golden:{
 name:"GOLDEN ELIXIR",
 img:"images/golden-elixir.png",
-text:`Golden Elixir is a powerful immunity drink made with amla, turmeric, and ginger.
+text:`
+About Juice:
+Golden Elixir is made with amla, turmeric, and ginger. It is a powerful immunity drink with anti-inflammatory properties.
 
-It is rich in vitamin C and anti-inflammatory compounds that strengthen immunity and improve digestion.
+Benefits:
+• Boosts immunity
+• Anti-inflammatory
+• Improves digestion
+• Supports skin & hair
+• Natural detox
 
-This juice is ideal for daily wellness and disease prevention.
-
-Precautions:
-• Can cause acidity if taken in excess
+Precautions & Side Effects:
+• Can cause acidity if overconsumed
 • Monitor if diabetic
-• Avoid large quantity during pregnancy`,
-points:[
-"Boosts immunity",
-"Anti-inflammatory",
-"Improves digestion",
-"Supports skin & hair",
-"Natural detox"
-]},
+• Avoid large quantity during pregnancy
+`},
 
 pom:{
 name:"POM APPLE",
 img:"images/pom-apple.png",
-text:`Pom Apple juice combines pomegranate and apple for a sweet and refreshing drink.
+text:`
+About Juice:
+Pom Apple juice combines pomegranate and apple for a refreshing, antioxidant-rich drink that supports overall health.
 
-It is rich in antioxidants and supports heart health, skin health, and immunity.
+Benefits:
+• Heart health support
+• Rich in antioxidants
+• Boosts immunity
+• Improves skin
+• Refreshing energy drink
 
-This juice is ideal for daily refreshment and maintaining energy levels.
-
-Precautions:
+Precautions & Side Effects:
 • High natural sugar
 • Avoid excess consumption
-• May interact with some medications`,
-points:[
-"Heart health support",
-"Rich in antioxidants",
-"Boosts immunity",
-"Improves skin",
-"Refreshing energy drink"
-]},
+• May interact with some medications
+`},
 
 gourd:{
 name:"COOL GOURD",
 img:"images/cool-gourd.png",
-text:`Cool Gourd juice is made from bottle gourd (lauki), known for its cooling properties.
+text:`
+About Juice:
+Cool Gourd juice is made from bottle gourd and is known for its cooling and hydrating properties, especially in summer.
 
-It helps hydrate the body, improve digestion, and support weight management.
+Benefits:
+• Cooling effect
+• Hydrates body
+• Supports digestion
+• Low calorie
+• Heart friendly
 
-Perfect for summer, this juice helps regulate body temperature and improve overall wellness.
-
-Precautions:
-• Never use bitter gourd (toxic)
+Precautions & Side Effects:
+• Never use bitter gourd
 • Avoid overconsumption
-• Consume fresh only`,
-points:[
-"Cooling effect",
-"Hydrates body",
-"Supports digestion",
-"Low calorie",
-"Heart friendly"
-]},
+• Consume fresh only
+`},
 
 berry:{
 name:"BERRY BLEND",
 img:"images/berry-blend.png",
-text:`Berry Blend juice combines multiple berries rich in antioxidants and vitamins.
+text:`
+About Juice:
+Berry Blend juice combines multiple berries rich in antioxidants and vitamins, making it a nutritious and delicious drink.
 
-It helps reduce inflammation, improve heart health, and support brain function.
+Benefits:
+• High antioxidants
+• Boosts immunity
+• Supports heart health
+• Improves brain function
+• Great taste
 
-This juice is delicious and highly nutritious, making it perfect for daily consumption.
-
-Precautions:
+Precautions & Side Effects:
 • Contains natural sugars
 • Avoid excess intake
-• Watch for berry allergies`,
-points:[
-"High antioxidants",
-"Boosts immunity",
-"Supports heart health",
-"Improves brain function",
-"Great taste"
-]},
+• Watch for berry allergies
+`},
 
 citrus:{
 name:"CITRUS BEET",
 img:"images/citrus-beet.png",
-text:`Citrus Beet juice combines beetroot with citrus fruits like orange and lemon.
+text:`
+About Juice:
+Citrus Beet juice combines beetroot with citrus fruits, improving iron absorption and boosting energy levels.
 
-It enhances iron absorption and improves blood circulation.
+Benefits:
+• Improves blood flow
+• Boosts stamina
+• Rich in vitamin C
+• Supports immunity
+• Enhances iron absorption
 
-This juice is ideal for boosting stamina and energy levels.
-
-Precautions:
+Precautions & Side Effects:
 • May lower blood pressure
 • High oxalates
-• Monitor sugar levels`,
-points:[
-"Improves blood flow",
-"Boosts stamina",
-"Rich in vitamin C",
-"Supports immunity",
-"Enhances iron absorption"
-]},
+• Monitor sugar levels
+`},
 
 carrot:{
 name:"CARROT BOOST",
 img:"images/carrot-boost.png",
-text:`Carrot Boost juice is rich in vitamin A and natural antioxidants.
+text:`
+About Juice:
+Carrot Boost juice is rich in vitamin A and antioxidants, supporting eye health and providing steady energy.
 
-It supports eye health, improves skin, and provides steady energy.
+Benefits:
+• Improves eyesight
+• Boosts energy
+• Rich in vitamin A
+• Supports skin
+• Good digestion
 
-This juice is ideal for daily nutrition and vitality.
-
-Precautions:
-• Excess may cause skin yellowing (harmless)
+Precautions & Side Effects:
+• Excess may cause skin yellowing
 • Monitor sugar if diabetic
-• Avoid overconsumption`,
-points:[
-"Improves eyesight",
-"Boosts energy",
-"Rich in vitamin A",
-"Supports skin",
-"Good digestion"
-]},
+• Avoid overconsumption
+`},
 
 sattu:{
 name:"SATTU SHAKE",
 img:"images/sattu-shake.png",
-text:`Sattu Shake is a traditional Indian protein-rich drink made from roasted chana.
+text:`
+About Juice:
+Sattu Shake is a traditional Indian protein-rich drink made from roasted chana, ideal for cooling and energy.
 
-It is highly nutritious and helps in cooling the body, boosting energy, and improving digestion.
+Benefits:
+• High protein drink
+• Cooling effect
+• Improves digestion
+• Boosts energy
+• Supports weight management
 
-Perfect for summer, it provides long-lasting energy and hydration.
-
-Precautions:
+Precautions & Side Effects:
 • High fiber may cause bloating
 • Avoid if allergic to chickpeas
-• Consume in moderation`,
-points:[
-"High protein drink",
-"Cooling effect",
-"Improves digestion",
-"Boosts energy",
-"Supports weight management"
-]}
-
+• Consume in moderation
+`}
 };
 
 /* FUNCTIONS */
@@ -676,7 +732,7 @@ document.getElementById("orderBtn").style.display = (tab==="pricing") ? "inline-
 function renderMenu(){
 let html="";
 for(let k in juices){
-html+=`<div class="juice-btn" onclick="changeJuice('${k}',event)">${juices[k].name}</div>`;
+html+=`<div class="juice-btn" data-key="${k}" onclick="changeJuice('${k}',event)">${juices[k].name}</div>`;
 }
 document.getElementById("juiceMenu").innerHTML=html;
 }
@@ -688,19 +744,20 @@ let j=juices[k];
 document.getElementById("juiceImg").src=j.img;
 document.getElementById("juiceText").innerText=j.text;
 
-let p="";
-j.points.forEach(x=>p+=`<li>${x}</li>`);
-document.getElementById("juiceDesc").innerHTML=p;
-
-document.querySelectorAll(".juice-btn").forEach(btn=>btn.classList.remove("active"));
+/* ACTIVE BUTTON FIX */
 document.querySelectorAll(".juice-btn").forEach(btn=>{
-if(btn.innerText === j.name){ btn.classList.add("active"); }
+btn.classList.remove("active");
+if(btn.dataset.key === k){
+btn.classList.add("active");
+}
 });
 
-if(e) e.target.classList.add("active");
-
 window.history.pushState({}, "", "?juice="+k);
-document.querySelector('.juice-menu').scrollLeft = e ? e.target.offsetLeft - 50 : 0;
+
+/* SCROLL FIX */
+if(e){
+document.querySelector('.juice-menu').scrollLeft = e.target.offsetLeft - 50;
+}
 }
 
 function orderNow(){
