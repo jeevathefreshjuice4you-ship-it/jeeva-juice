@@ -741,7 +741,7 @@ function changeJuice(k,e){
 currentJuice=k;
 let j=juices[k];
 
-document.getElementById("juiceImg").src=j.img;
+document.getElementById("juiceImg").src = j.img + "?v=" + Date.now();
 document.getElementById("juiceText").innerText=j.text;
 
 /* ACTIVE BUTTON FIX */
