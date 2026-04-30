@@ -17,6 +17,32 @@ body { margin:0; font-family:'Segoe UI',sans-serif; }
   padding:25px;
 }
 
+.ticker {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  background:rgba(0,0,0,0.6); /* 🔥 blends with UI */
+  color:white;
+  padding:3px 0;
+  font-size:10px;
+  z-index:999;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.ticker-text {
+  display:inline-block;
+  padding-left:100%;
+  animation:tickerMove 12s linear infinite;
+  font-weight:500;
+}
+
+@keyframes tickerMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
 .topbar { display:flex; align-items:center; }
 
 .brand-row { display:flex; align-items:center; gap:10px; }
@@ -303,6 +329,11 @@ body { margin:0; font-family:'Segoe UI',sans-serif; }
     display:none;
   }
 
+  .ticker-text {
+    animation: tickerMove 10s linear infinite;
+    font-size: 13px;
+  }
+
   .juice-btn{
     flex:0 0 auto;
     min-width:95px;
@@ -329,6 +360,11 @@ body { margin:0; font-family:'Segoe UI',sans-serif; }
 </head>
 
 <body>
+<div class="ticker">
+  <div class="ticker-text">
+    🚚 Free Home Delivery | 🥤 Fresh Juice Daily | 🌿 Healthy Life with JEEVA | 📞 Order Now
+  </div>
+</div>
 
 <div class="hero">
 
@@ -417,68 +453,68 @@ pricing: `
 
 <tr onclick="changeJuice('abc')">
   <td>ABC POWER 🍎🥕</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹40</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹50</td>
 </tr>
 
 <tr onclick="changeJuice('detox')">
   <td>GREEN DETOX</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹30</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹35</td>
 </tr>
 
 <tr onclick="changeJuice('mint')">
   <td>BITTER & MINT</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹30</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹35</td>
 </tr>
 
 <tr onclick="changeJuice('beet')">
   <td>BEET & MELON</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹30</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹35</td>
 </tr>
 
 <tr onclick="changeJuice('golden')">
   <td>GOLDEN ELIXIR</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹30</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹35</td>
 </tr>
 
 <tr onclick="changeJuice('pom')">
   <td>POM APPLE</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹60</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹70</td>
 </tr>
 
 <tr onclick="changeJuice('gourd')">
   <td>COOL GOURD</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹30</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹35</td>
 </tr>
 
 <tr onclick="changeJuice('berry')">
   <td>BERRY BLEND</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹60</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹70</td>
 </tr>
 
 <tr onclick="changeJuice('citrus')">
   <td>CITRUS BEET</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹40</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹50</td>
 </tr>
 
 <tr onclick="changeJuice('carrot')">
   <td>CARROT BOOST</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹30</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹50</td>
 </tr>
 
 <tr onclick="changeJuice('sattu')">
   <td>SATTU SHARBAT</td>
-  <td align="center">200 ML</td>
-  <td align="right">₹30</td>
+  <td align="center">250 ML</td>
+  <td align="right">₹35</td>
 </tr>
 </table>
 
@@ -501,7 +537,7 @@ const juices = {
 
 abc:{
 name:"ABC POWER",
-img:"./images/abc-power.png",
+img:"images/abc-power.png",
 text:`
 About Juice:
 ABC juice (Apple + Beetroot + Carrot) is one of the most powerful natural health drinks. It is rich in vitamins A & C, antioxidants, and natural nitrates that improve blood flow and energy levels. It is best consumed in the morning on an empty stomach.
@@ -521,7 +557,7 @@ Precautions & Side Effects:
 
 detox:{
 name:"GREEN DETOX",
-img:"./images/green-detox.png",
+img:"images/green-detox.png",
 text:`
 About Juice:
 Green Detox juice is made from leafy greens like spinach, cucumber, and apple. It delivers a rich dose of nutrients and antioxidants that help cleanse the body and improve hydration.
@@ -541,7 +577,7 @@ Precautions & Side Effects:
 
 mint:{
 name:"BITTER MINT BOOST",
-img:"./images/bitter-mint.png",
+img:"images/bitter-mint.png",
 text:`
 About Juice:
 A strong detox juice made from bitter gourd, mint, and amla. It helps regulate blood sugar and improves digestion while mint balances the bitterness.
@@ -561,7 +597,7 @@ Precautions & Side Effects:
 
 beet:{
 name:"BEET & MELON",
-img:"./images/beet-melon.png",
+img:"images/beet-melon.png",
 text:`
 About Juice:
 A refreshing combination of beetroot and watermelon that improves blood flow and stamina. It is highly hydrating and ideal for summer.
@@ -581,7 +617,7 @@ Precautions & Side Effects:
 
 golden:{
 name:"GOLDEN ELIXIR",
-img:"./images/golden-elixir.png",
+img:"images/golden-elixir.png",
 text:`
 About Juice:
 Golden Elixir is made with amla, turmeric, and ginger. It is a powerful immunity drink with anti-inflammatory properties.
@@ -601,7 +637,7 @@ Precautions & Side Effects:
 
 pom:{
 name:"POM APPLE",
-img:"./images/pom-apple.png",
+img:"images/pom-apple.png",
 text:`
 About Juice:
 Pom Apple juice combines pomegranate and apple for a refreshing, antioxidant-rich drink that supports overall health.
@@ -621,7 +657,7 @@ Precautions & Side Effects:
 
 gourd:{
 name:"COOL GOURD",
-img:"./images/cool-gourd.png",
+img:"images/cool-gourd.png",
 text:`
 About Juice:
 Cool Gourd juice is made from bottle gourd and is known for its cooling and hydrating properties, especially in summer.
@@ -641,7 +677,7 @@ Precautions & Side Effects:
 
 berry:{
 name:"BERRY BLEND",
-img:"./images/berry-blend.png",
+img:"images/berry-blend.png",
 text:`
 About Juice:
 Berry Blend juice combines multiple berries rich in antioxidants and vitamins, making it a nutritious and delicious drink.
@@ -661,7 +697,7 @@ Precautions & Side Effects:
 
 citrus:{
 name:"CITRUS BEET",
-img:"./images/citrus-beet.png",
+img:"images/citrus-beet.png",
 text:`
 About Juice:
 Citrus Beet juice combines beetroot with citrus fruits, improving iron absorption and boosting energy levels.
@@ -681,7 +717,7 @@ Precautions & Side Effects:
 
 carrot:{
 name:"CARROT BOOST",
-img:"./images/carrot-boost.png",
+img:"images/carrot-boost.png",
 text:`
 About Juice:
 Carrot Boost juice is rich in vitamin A and antioxidants, supporting eye health and providing steady energy.
@@ -701,7 +737,7 @@ Precautions & Side Effects:
 
 sattu:{
 name:"SATTU SHAKE",
-img:"./images/sattu-shake.png",
+img:"images/sattu-shake.png",
 text:`
 About Juice:
 Sattu Shake is a traditional Indian protein-rich drink made from roasted chana, ideal for cooling and energy.
@@ -737,27 +773,43 @@ html+=`<div class="juice-btn" data-key="${k}" onclick="changeJuice('${k}',event)
 document.getElementById("juiceMenu").innerHTML=html;
 }
 
-function changeJuice(k,e){
-currentJuice=k;
-let j=juices[k];
+function changeJuice(k, e){
+  currentJuice = k;
+  let j = juices[k];
 
-document.getElementById("juiceImg").src = j.img + "?v=" + Date.now();
-document.getElementById("juiceText").innerText=j.text;
+  const img = document.getElementById("juiceImg");
 
-/* ACTIVE BUTTON FIX */
-document.querySelectorAll(".juice-btn").forEach(btn=>{
-btn.classList.remove("active");
-if(btn.dataset.key === k){
-btn.classList.add("active");
-}
-});
+  // 🔥 STEP 1: hide old image instantly
+  img.style.opacity = 0;
+  img.src = ""; // clears previous image immediately
 
-window.history.pushState({}, "", "?juice="+k);
+  // 🔥 STEP 2: preload new image
+  const newImg = new Image();
+  newImg.src = j.img;
 
-/* SCROLL FIX */
-if(e){
-document.querySelector('.juice-menu').scrollLeft = e.target.offsetLeft - 50;
-}
+  newImg.onload = function(){
+    img.src = j.img;
+    img.style.opacity = 1; // smooth fade-in
+  };
+
+  // TEXT UPDATE (instant)
+  document.getElementById("juiceText").innerText = j.text;
+
+  // ACTIVE BUTTON FIX
+  document.querySelectorAll(".juice-btn").forEach(btn=>{
+    btn.classList.remove("active");
+    if(btn.dataset.key === k){
+      btn.classList.add("active");
+    }
+  });
+
+  // URL UPDATE
+  window.history.pushState({}, "", "?juice=" + k);
+
+  // SCROLL FIX
+  if(e){
+    document.querySelector('.juice-menu').scrollLeft = e.target.offsetLeft - 50;
+  }
 }
 
 function orderNow(){
@@ -781,6 +833,11 @@ function scrollProducts(direction){
     behavior: "smooth"
   });
 }
+
+Object.values(juices).forEach(j => {
+  const img = new Image();
+  img.src = j.img;
+});
 
 /* INIT */
 renderMenu();
